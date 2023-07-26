@@ -3,15 +3,6 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
-<p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-
-<p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://travis-ci.org/msanvarov/nest-rest-mongo-boilerplate"><img src="https://travis-ci.org/msanvarov/nest-rest-mongo-boilerplate.svg?branch=master" alt="Travis" /></a>
-<a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-<a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
     
 ### 📚 Description
 
@@ -72,33 +63,6 @@ By default, the application comes with a config module that can read in every en
 
 ### 🏗 Choosing a Web Framework
 
-This boilerplate comes with [Fastify](https://github.com/fastify/fastify) out of the box as it offers [performance benefits](https://github.com/nestjs/nest/blob/master/benchmarks/all_output.txt) over Express. But this can be changed to use [Express](https://expressjs.com/) framework instead of Fastify. 
-
-For interchangeability:
-
-- Replace the following lines of code in the [main.ts file](https://github.com/msanvarov/nest-rest-mongo-boilerplate/blob/master/src/main.ts) with the ones detailed below.
-
-Fastify:
-
-```ts
-// for fastify:
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
-import * as headers from 'fastify-helmet';
-import * as fastifyRateLimiter from 'fastify-rate-limit';
-const app = await NestFactory.create<NestFastifyApplication>(
-  AppModule,
-  new FastifyAdapter({ logger: console }),
-);
-app.register(headers);
-app.register(fastifyRateLimiter, {
-  max: 100,
-  timeWindow: '1 minute',
-});
-```
-
 Express:
 
 ```ts
@@ -116,54 +80,6 @@ app.use(
   }),
 );
 ```
-
-**Note**: The boilerplate comes with production dependencies for both Express and Fastify to support moving between two. But this is going to leave it bloated especially when only **one web framework is used at a time**. Thus, **it is recommended that when deploying to production, unused dependencies are purged.** 
-
-If you choose to **use Fastify**, this command will **purge all of the Express dependencies**:
-
-```bash
-# removing Express dependencies
-$ npm rm @nestjs/platform-express express-rate-limit helmet swagger-ui-express @types/express --save
-```
-
-If you choose to **use Express**, this command will **purge all of the Fastify dependencies**:
-
-```bash
-# removing Fastify dependencies
-$ npm rm @nestjs/platform-fastify fastify-helmet fastify-rate-limit fastify-swagger --save
-```
-
----
-
-### ✅ Testing
-
-#### Docker 🐳
-
-```bash
-# unit tests
-$ docker exec -it nest yarn test
-
-# e2e tests
-$ docker exec -it nest yarn test:e2e
-
-# test coverage
-$ docker exec -it nest yarn test:cov
-```
-
-#### Non-Docker
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
----
 
 ### 💡 TypeDocs
 
