@@ -23,6 +23,9 @@ yarn-error.log
 # build
 /dist
 
+# docs
+/docs
+
 # tests
 /test
 /coverage

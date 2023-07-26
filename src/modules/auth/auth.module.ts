@@ -9,31 +9,33 @@ import { JwtStrategy } from "./jwt.strategy";
 import { AuthController } from "./auth.controller";
 
 @Module({
-  imports: [
-    ProfileModule,
-    ConfigModule,
-    PassportModule.register({ defaultStrategy: "jwt" }),
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => {
-        return {
-          secret: configService.get("WEBTOKEN_SECRET_KEY"),
-          signOptions: {
-            ...(configService.get("WEBTOKEN_EXPIRATION_TIME")
-              ? {
-                  expiresIn: Number(
-                    configService.get("WEBTOKEN_EXPIRATION_TIME"),
-                  ),
-                }
-              : {}),
-          },
-        };
-      },
-      inject: [ConfigService],
-    }),
-  ],
-  controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-  exports: [PassportModule.register({ defaultStrategy: "jwt" })],
+    imports: [
+        ProfileModule,
+        ConfigModule,
+        PassportModule.register({ defaultStrategy: "jwt" }),
+        JwtModule.registerAsync({
+            imports: [ConfigModule],
+            useFactory: async (configService: ConfigService) => {
+                return {
+                    secret: configService.get("WEBTOKEN_SECRET_KEY"),
+                    signOptions: {
+                        ...(configService.get("WEBTOKEN_EXPIRATION_TIME")
+                            ? {
+                                  expiresIn: Number(
+                                      configService.get(
+                                          "WEBTOKEN_EXPIRATION_TIME",
+                                      ),
+                                  ),
+                              }
+                            : {}),
+                    },
+                };
+            },
+            inject: [ConfigService],
+        }),
+    ],
+    controllers: [AuthController],
+    providers: [AuthService, JwtStrategy],
+    exports: [PassportModule.register({ defaultStrategy: "jwt" })],
 })
 export class AuthModule {}

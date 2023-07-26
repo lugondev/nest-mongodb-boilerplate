@@ -5,23 +5,23 @@ import { IsAlphanumeric, IsNotEmpty, MinLength } from "class-validator";
  * Login Paylaod Class
  */
 export class LoginPayload {
-  /**
-   * Username field
-   */
-  @ApiProperty({
-    required: true,
-  })
-  @IsAlphanumeric()
-  @IsNotEmpty()
-  username: string;
+    /**
+     * Username field
+     */
+    @ApiProperty({
+        required: true,
+    })
+    @IsAlphanumeric()
+    @IsNotEmpty()
+    username: string;
 
-  /**
-   * Password field
-   */
-  @ApiProperty({
-    required: true,
-  })
-  @IsNotEmpty()
-  @MinLength(8)
-  password: string;
+    /**
+     * Password field
+     */
+    @ApiProperty({
+        required: true,
+    })
+    @IsNotEmpty()
+    @MinLength(8)
+    password: string;
 }

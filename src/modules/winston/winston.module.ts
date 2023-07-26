@@ -1,11 +1,11 @@
 import { DynamicModule, Global, Module } from "@nestjs/common";
 import {
-  WinstonModuleAsyncOptions,
-  WinstonModuleOptions,
+    WinstonModuleAsyncOptions,
+    WinstonModuleOptions,
 } from "./winston.interfaces";
 import {
-  createWinstonAsyncProviders,
-  createWinstonProviders,
+    createWinstonAsyncProviders,
+    createWinstonProviders,
 } from "./winston.providers";
 
 @Global()
@@ -14,34 +14,34 @@ import {
  * Represents a Winston Module
  */
 export class WinstonModule {
-  /**
-   * Constructor for winson module
-   * @param options
-   */
-  public static forRoot(options: WinstonModuleOptions): DynamicModule {
-    const providers = createWinstonProviders(options);
+    /**
+     * Constructor for winson module
+     * @param options
+     */
+    public static forRoot(options: WinstonModuleOptions): DynamicModule {
+        const providers = createWinstonProviders(options);
 
-    return {
-      module: WinstonModule,
-      providers,
-      exports: providers,
-    };
-  }
+        return {
+            module: WinstonModule,
+            providers,
+            exports: providers,
+        };
+    }
 
-  /**
-   * Asynchronous constructor for winston module
-   * @param options
-   */
-  public static forRootAsync(
-    options: WinstonModuleAsyncOptions,
-  ): DynamicModule {
-    const providers = createWinstonAsyncProviders(options);
+    /**
+     * Asynchronous constructor for winston module
+     * @param options
+     */
+    public static forRootAsync(
+        options: WinstonModuleAsyncOptions,
+    ): DynamicModule {
+        const providers = createWinstonAsyncProviders(options);
 
-    return {
-      module: WinstonModule,
-      imports: options.imports,
-      providers,
-      exports: providers,
-    };
-  }
+        return {
+            module: WinstonModule,
+            imports: options.imports,
+            providers,
+            exports: providers,
+        };
+    }
 }
