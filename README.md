@@ -33,7 +33,7 @@ This boilerplate is made to quickly prototype backend applications. It comes wit
 
 - Download dependencies using `npm i` or `yarn`
 
-- Start the app in pre-production mode using `npm run start` or `npm run start:dev` for development (the app will be exposed on the port 9000; not to conflict with React, Angular, or Vue)
+- Start the app in pre-production mode using `yarn start` or `yarn start:dev` for development (the app will be exposed on the port 9000; not to conflict with React, Angular, or Vue)
 
 #### Deploying with Docker 🐳
 
@@ -81,15 +81,22 @@ app.use(
 );
 ```
 
+### 💡 Format code use Prettier
+
+```bash
+# generate docs for code
+$ yarn format
+```
+
 ### 💡 TypeDocs
 
 The documentation for this boilerplate can be found [on Github pages](https://msanvarov.github.io/nest-rest-mongo-boilerplate/).
 
-The docs can be generated on-demand, simply, by typing `npm run typedocs`. This will produce a **docs** folder with the required front-end files and **start hosting on [localhost](http://localhost:8080)**.
+The docs can be generated on-demand, simply, by typing `yarn typedocs`. This will produce a **docs** folder with the required front-end files and **start hosting on [localhost](http://localhost:8080)**.
 
 ```bash
 # generate docs for code
-$ npm run typedocs
+$ yarn typedocs
 ```
 
 ---
