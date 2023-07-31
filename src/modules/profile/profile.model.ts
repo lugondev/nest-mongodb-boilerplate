@@ -11,11 +11,10 @@ export const Profile = new Schema({
     password: { type: String, required: true },
     avatar: { type: String, required: true },
     roles: [{ type: String }],
-    date: {
-        type: Date,
-        default: Date.now,
-    },
-});
+
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+}, { timestamps: true });
 
 /**
  * Mongoose Profile Document
@@ -52,5 +51,6 @@ export interface IProfile extends Document {
     /**
      * Date
      */
-    readonly date: Date;
+    readonly createdAt: Date;
+    readonly updatedAt: Date;
 }
