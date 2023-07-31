@@ -38,6 +38,9 @@ export class ConfigService {
          * A schema to validate envConfig against
          */
         const envVarsSchema: joi.ObjectSchema = joi.object({
+            GCP_PROJECT: joi.string(),
+            PROJECT_NAME: joi.string(),
+
             APP_ENV: joi.string().valid("dev", "prod").default("dev"),
             APP_URL: joi.string().uri({
                 scheme: [/https?/],

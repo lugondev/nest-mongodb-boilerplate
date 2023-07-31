@@ -1,9 +1,9 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
-import { ConfigService } from "../config/config.service";
-import { ProfileService } from "../profile/profile.service";
-import { IProfile } from "../profile/profile.model";
-import { LoginPayload } from "./payload/login.payload";
+import {Injectable, UnauthorizedException} from "@nestjs/common";
+import {JwtService} from "@nestjs/jwt";
+import {ConfigService} from "../config/config.service";
+import {IProfile} from "../profile/profile.model";
+import {ProfileService} from "../profile/profile.service";
+import {LoginPayload} from "./payload/login.payload";
 
 /**
  * Models a typical Login/Register route return body
@@ -54,22 +54,22 @@ export class AuthService {
      * @returns {string} hrf time
      */
     private static prettyPrintSeconds(time: string): string {
-        const ntime = Number(time);
-        const hours = Math.floor(ntime / 3600);
-        const minutes = Math.floor((ntime % 3600) / 60);
-        const seconds = Math.floor((ntime % 3600) % 60);
+        const nTime = Number(time);
+        const hours = Math.floor(nTime / 3600);
+        const minutes = Math.floor((nTime % 3600) / 60);
+        const seconds = Math.floor((nTime % 3600) % 60);
 
-        return `${
-            hours > 0 ? hours + (hours === 1 ? " hour," : " hours,") : ""
-        } ${
-            minutes > 0
-                ? minutes + (minutes === 1 ? " minute" : " minutes")
-                : ""
-        } ${
-            seconds > 0
-                ? seconds + (seconds === 1 ? " second" : " seconds")
-                : ""
-        }`;
+        const times = [];
+        if (hours > 0) {
+            times.push(`${hours}h`);
+        }
+        if (minutes > 0) {
+            times.push(`${minutes}m`);
+        }
+        if (seconds > 0) {
+            times.push(`${seconds}s`);
+        }
+        return times.join(" ").trim();
     }
 
     /**
@@ -78,15 +78,15 @@ export class AuthService {
      * @returns {Promise<ITokenReturnBody>} token body
      */
     async createToken({
-        _id,
-        username,
-        email,
-        avatar,
-    }: IProfile): Promise<ITokenReturnBody> {
+                          _id,
+                          username,
+                          email,
+                          avatar,
+                      }: IProfile): Promise<ITokenReturnBody> {
         return {
             expires: this.expiration,
             expiresPrettyPrint: AuthService.prettyPrintSeconds(this.expiration),
-            token: this.jwtService.sign({ _id, username, email, avatar }),
+            token: this.jwtService.sign({_id, username, email, avatar}),
         };
     }
 

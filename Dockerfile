@@ -1,19 +1,20 @@
-FROM node:carbon
+FROM node:lts
 # App directory
 WORKDIR /app
 
 # App dependencies
-COPY package*.json ./
-RUN npm i
+COPY package.json ./
+COPY yarn.lock ./
+RUN yarn install
 
 # Copy app source code
 COPY . .
 
 # Env setup
-COPY .env.example .env
+COPY .env.prod .env
 
 #Expose port and begin application
-EXPOSE 9001
+EXPOSE 8080
 
 # Start the app
-CMD [ "npm", "run", "start:dev"]
+CMD [ "yarn", "start:dev"]
