@@ -17,4 +17,4 @@ COPY .env.prod .env
 EXPOSE 8080
 
 # Start the app
-CMD [ "yarn", "start:dev"]
+CMD [ "yarn", "start"]
